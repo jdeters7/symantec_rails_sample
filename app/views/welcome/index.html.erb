@@ -1,0 +1,18 @@
+<h1>Rails Sample App</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.first_name %></td>
+    <td><%= user.last_name %></td>
+    <td><%= user.email %></td>
+  </tr>
+<% end %>
+</table>
