@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+p.bank-name{
+	font-size: 46px;
+	font-weight: bold;
+}
+
+p.bank-description{
+	font-size: 30px;
+	font-weight: bold;
+}

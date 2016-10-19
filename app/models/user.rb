@@ -17,6 +17,7 @@
 #  last_name              :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  push_code              :string
 #
 
 class User < ApplicationRecord

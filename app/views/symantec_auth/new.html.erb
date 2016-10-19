@@ -1,0 +1,17 @@
+<h1>Symantec Authenication</h1>
+<h2>This site requires a second factor of authentication</h2>
+
+<%= link_to symantec_auth_push_path, method: :post do %>
+	<btn class="btn btn-default">Push</btn>
+<% end %>
+</br>
+<%= link_to symantec_auth_sms_send_path, method: :post do %>
+	<btn class="btn btn-default">SMS</btn>
+<% end %>
+</br>
+<%= link_to "#" do %>
+	<btn class="btn btn-default">One Time Password</btn>
+<% end %>
+
+
+

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SymantecRailsSample</title>
+    <title>Symantec Bank</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -20,7 +20,14 @@
 	    	<% end %>	
 	    <% end %>
 
+      <% unless user_signed_in? %>
+
+        <p class="text-center bank-name">Symantec Bank</p>
+        <p class="text-center bank-description">This bank utalizes Symantec's VIP Services.</p>
+      <% end %>
+
     	<%= yield %>
+      
     </div>
   </body>
 </html>
