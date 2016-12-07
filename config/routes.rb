@@ -35,10 +35,19 @@ Rails.application.routes.draw do
 
   post 'symantec_auth/sms_validate'
 
+  get 'symantec_auth/otp'
+
+  post 'symantec_auth/otp_validate'
+
+  get 'symantec_auth/new_credential'
+
+  post 'symantec_auth/add_credential'
+
+
   # post 'symantec_auth/create'
 
   # devise_for :users
-  devise_for :users, controllers: { sessions: 'users/sessions' }
+  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
   root to: 'welcome#index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -32,7 +32,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'annotate'
 gem 'twitter-bootstrap-rails'
-gem 'soteria', '~> 0.2.1'
+gem 'soteria'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -8,32 +8,24 @@ class SymantecAuthController < ApplicationController
   def new
   end
 
-  def push
-    soteria = Soteria.new("/Users/jack_deters/Downloads/publicCert.pem", "/Users/jack_deters/Downloads/privateKey.pem", "TeamSymantec1234")
-    transaction_id = soteria.send_push("jack_phone", {})
-    result = soteria.poll_for_response(transaction_id[:transaction_id], 5, 60)
+  def otp
+  end
 
-    if result[:authenticated] == true
-      set_second_auth
+  def new_credential
+  end
+
+  def add_credential
+    transaction = soteria.add_credential(current_user.email, params[:credential], "STANDARD_OTP", {})
+
+    if(transaction[:success])
+      redirect_to root_path, notice: "Credential successfully added." and return
     else
-      sign_out
+      redirect_to root_path, notice: "Was not able to add credential." and return
     end
-    redirect_to root_path and return
   end
 
-  def sms_send
-    soteria = Soteria.new("/Users/jack_deters/Downloads/publicCert.pem", "/Users/jack_deters/Downloads/privateKey.pem", "TeamSymantec1234")
-    transaction_id = soteria.send_sms("jack_phone", "15175996147")
-
-    redirect_to symantec_auth_sms_code_path
-  end
-
-  def sms_code
-  end
-
-  def sms_validate
-    soteria = Soteria.new("/Users/jack_deters/Downloads/publicCert.pem", "/Users/jack_deters/Downloads/privateKey.pem", "TeamSymantec1234")
-    transaction_id = soteria.check_otp("jack_phone", params[:sms])
+  def otp_validate
+    transaction_id = soteria.check_otp(current_user.email, params[:otp])
 
     if(transaction_id[:status] == "Success")
       set_second_auth
@@ -42,6 +34,56 @@ class SymantecAuthController < ApplicationController
     end
 
     redirect_to root_path and return
+  end
+
+  def push
+    user_transaction = soteria.get_user_info(current_user.email, true)
+
+    if user_transaction[:credentials]
+      transaction_id = soteria.send_push(current_user.email, {})
+      result = soteria.poll_for_response(transaction_id[:transaction_id], 5, 60)
+      if result[:success] == true
+        set_second_auth
+      else
+        sign_out
+      end
+      redirect_to root_path and return  
+    else
+      redirect_to root_path, notice: "You do not have a credential associated with this account." and return  
+    end
+    
+  end
+
+  def sms_send
+    user_transaction = soteria.get_user_info(current_user.email, true)
+
+    if user_transaction[:credentials]
+      transaction_id = soteria.send_sms(current_user.email, user_transaction[:credentials][0][:credential_id])
+      redirect_to symantec_auth_sms_code_path
+    else
+      redirect_to root_path, notice: "You do not have a credential associated with this account." and return  
+    end
+  end
+
+  def sms_code
+  end
+
+  def sms_validate
+    user_transaction = soteria.get_user_info(current_user.email, true)
+    
+    if user_transaction[:credentials]
+      transaction_id = soteria.check_otp(current_user.email, params[:sms])
+
+      if(transaction_id[:status] == "Success")
+        set_second_auth
+      else
+        sign_out
+      end
+
+      redirect_to root_path and return
+    else
+      redirect_to root_path, notice: "You do not have a credential associated with this account." and return
+    end
   end
 
   def create

@@ -8,9 +8,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super do |resource|
+      soteria = Soteria.client("/publicCert.pem", "/privateKey.pem", "TeamSymantec1234", true)
+      transaction = soteria.create_user(resource.email, resource.pin)
+      unless transaction[:success]
+        resource.destroy
+        redirect_to root_path, alert: "User creation failed"
+      end
+    end
+  end
 
   # GET /resource/edit
   # def edit

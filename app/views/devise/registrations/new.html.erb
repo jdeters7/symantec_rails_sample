@@ -10,12 +10,17 @@
 
   <div class="form-group">
     <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, autofocus: true, class: "form-control" %>
+    <%= f.text_field :last_name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :pin %><br />
+    <%= f.text_field :pin, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, class: "form-control" %>
+    <%= f.email_field :email, class: "form-control" %>
   </div>
 
   <div class="form-group">
@@ -32,7 +37,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", class: "btn btn-default" %>
   </div>
 <% end %>
 

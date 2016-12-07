@@ -9,20 +9,35 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="https://www.symantec.com/">
+            <%= image_tag "logo.svg.png", width: "70", class: "text-center" %>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://www.symantec.com/">About Symatec</a></li>
+            <li><a href="https://github.com/ryanrampage1/Soteria">Git Source</a></li>
+            <li><a href="http://www.rubydoc.info/gems/soteria/0.3.0">Documentation</a></li>
+            <% if user_signed_in? %>
+              <li><%= link_to "Logout", destroy_user_session_path(), method: :delete %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
     <div class="container">
 
 	  	<p class="notice"><%= notice %></p>
 	    <p class="alert"><%= alert %></p>
 
-	    <% if user_signed_in? %>
-	    	<%= link_to destroy_user_session_path(), method: :delete do %>
-	    		<btn class="logout_button">Logout</btn>
-	    	<% end %>	
-	    <% end %>
-
       <% unless user_signed_in? %>
-
-        <p class="text-center bank-name">Symantec Bank</p>
+        <p class="text-center bank-name">
+          <%= image_tag "logo.svg.png", size: "350x115", class: "text-center" %>
+        </p>
         <p class="text-center bank-description">This bank utalizes Symantec's VIP Services.</p>
       <% end %>
 

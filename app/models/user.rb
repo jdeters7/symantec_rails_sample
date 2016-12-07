@@ -26,4 +26,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   validates_presence_of :first_name, :last_name
+  validates :pin, numericality: {greater_than_or_equal_to: 1000}
 end

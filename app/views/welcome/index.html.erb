@@ -2,17 +2,37 @@
 <table class="table">
   <thead>
     <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Email</th>
+      <th>Account</th>
+      <th>Debit</th>
+      <th>Credit</th>
+      <th>Balance</th>
     </tr>
   </thead>
 
-<% @users.each do |user| %>
-  <tr>
-    <td><%= user.first_name %></td>
-    <td><%= user.last_name %></td>
-    <td><%= user.email %></td>
-  </tr>
-<% end %>
+  <tbody>
+    <tr>
+      <td>5555</td>
+      <td></td>
+      <td>4000.00</td>
+      <td>12000.00</td>
+    </tr>
+    <tr>
+      <td>5555</td>
+      <td>3000.00</td>
+      <td></td>
+      <td>9000.00</td>
+    </tr>
+    <tr>
+      <td>9999</td>
+      <td></td>
+      <td>10000.00</td>
+      <td>43000.00</td>
+    </tr>
+    <tr>
+      <td>5555</td>
+      <td>2000.00</td>
+      <td></td>
+      <td>11000.00</td>
+    </tr>
+  </tbody>
 </table>

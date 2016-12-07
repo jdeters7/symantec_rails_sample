@@ -1,10 +1,10 @@
-<h1>Symantec SMS Authenication</h1>
+<h1>Symantec OTP Authenication</h1>
 
 <%= form_tag symantec_auth_sms_validate_path, method: :post do %>
 
 	 <div class="form-group">
-    <%= label_tag "SMS Code" %><br />
-    <%= text_field_tag :sms, "", {class: "form-control"} %>
+    <%= label_tag "One Time Password" %><br />
+    <%= text_field_tag :otp, "", {class: "form-control"} %>
   </div>
 
 	<%= submit_tag "Authenticate", class: "btn btn-default" %>
