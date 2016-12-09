@@ -165,7 +165,7 @@ GEM
       nori (~> 2.4)
       wasabi (~> 3.4)
     socksify (1.7.0)
-    soteria (1.0.3)
+    soteria (1.0.4)
       savon (~> 2.11, >= 2.11.0)
     spring (1.7.2)
     spring-watcher-listen (2.0.0)
@@ -233,4 +233,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   1.13.1
+   1.13.6
